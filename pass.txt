@@ -1,0 +1,7 @@
+python manage.py createsuperuser
+vodun
+Daniel.Bavenmark@student.careeria.fi
+DaBa_123456
+
+teppo
+testaaja
