@@ -67,7 +67,7 @@ WSGI_APPLICATION = 'suppliers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-
+'''
 # Perus SQLite
 DATABASES = {
     'default': {
@@ -87,7 +87,7 @@ DATABASES = {
 }
 
 
-
+'''
 # Lokaali PostgreSQL
 DATABASES = {
     'default': {
