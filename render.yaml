@@ -21,8 +21,8 @@ services:
       - key: WEB_CONCURRENCY
         value: 4
       - key: DJANGO_SUPERUSER_USERNAME
-        value: "vodune"
+        value: "postgres"
       - key: DJANGO_SUPERUSER_PASSWORD
-        value: "vodune"
+        value: "DaBa7777!"
       - key: DJANGO_SUPERUSER_EMAIL
         value: "super@usersuper.fi"
