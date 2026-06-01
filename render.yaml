@@ -23,6 +23,6 @@ services:
       - key: DJANGO_SUPERUSER_USERNAME
         value: "postgres"
       - key: DJANGO_SUPERUSER_PASSWORD
-        value: "DaBa7777!"
+        value: "Sq7_p0st"
       - key: DJANGO_SUPERUSER_EMAIL
         value: "super@usersuper.fi"
