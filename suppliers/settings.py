@@ -67,7 +67,7 @@ WSGI_APPLICATION = 'suppliers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-'''
+
 # Perus SQLite
 DATABASES = {
     'default': {
@@ -75,8 +75,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-'''
 
+'''
 # Render käytössä
 DATABASES = {
     'default': dj_database_url.config(
@@ -86,14 +86,15 @@ DATABASES = {
     )
 }
 
-'''
+
+
 # Lokaali PostgreSQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'suppliers_db',
         'USER': 'postgres',
-        'PASSWORD': 'DaBa7777!', #vaihda oikea
+        'PASSWORD': 'Sq7_p0st', #vaihda oikea
         'HOST': 'localhost',
         'PORT': '5432'
     }
