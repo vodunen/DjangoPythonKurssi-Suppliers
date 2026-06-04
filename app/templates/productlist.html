@@ -3,13 +3,12 @@
 {% block content %}
 
 <br />
-<!-- Lisäyslomakkeen paikka -->
 <div id="add-div"></div>
 <br />
 
-<h1>Products</h1>
+<h1 style="color: darkviolet">Products</h1>
 
-<a onclick="showaddform()" class="btn btn-primary">Add new product</a>
+<button id="add-btn" class="btn btn-success btn-sm" onclick="showaddform()">Add new product</button>
 
 {% for p in products %}
 

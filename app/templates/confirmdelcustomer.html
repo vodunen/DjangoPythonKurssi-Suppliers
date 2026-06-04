@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="card" style="width: 40rem; margin: 20px auto;">
+    <div class="card-body">
+        <h3>Confirm deletion</h3>
+        <p>Are you sure you want to delete customer:</p>
+        <h4>{{ customer.firstname }} {{ customer.lastname }}</h4>
+        <p>Email: {{ customer.email }}</p>
+        
+        <br>
+        <a href="/delete-customer/{{ customer.id }}/" class="btn btn-danger">Yes, Delete</a>
+        <a href="/customers/" class="btn btn-secondary">Cancel</a>
+    </div>
+</div>
+
+{% endblock %}

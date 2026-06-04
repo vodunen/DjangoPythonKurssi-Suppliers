@@ -25,3 +25,39 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.productname} produced by {self.supplier.companyname}"
     
+
+
+    # Added new ones
+
+class Customer(models.Model):
+    firstname = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=20, blank=True)
+    address = models.CharField(max_length=150, blank=True)
+    city = models.CharField(max_length=50, blank=True)
+    country = models.CharField(max_length=50, default="Finland")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.firstname} {self.lastname}"
+
+
+class Order(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('confirmed', 'Confirmed'),
+        ('shipped', 'Shipped'),
+        ('delivered', 'Delivered'),
+        ('cancelled', 'Cancelled'),
+    ]
+
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='orders')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    order_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    notes = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"Order {self.id} - {self.customer} - {self.product.productname}"

@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<br />
+<div id="add-div"></div>
+<br />
+
+<h1 style="color: darkviolet">Orders</h1>
+
+<button id="add-btn" class="btn btn-success btn-sm" onclick="showaddform()">Add new order</button>
+
+{% for o in orders %}
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <h4 class="card-title">Order #{{o.id}}</h4>
+        <p class="card-text"><strong>Customer:</strong> {{o.customer.firstname}} {{o.customer.lastname}}</p>
+        <p class="card-text"><strong>Product:</strong> {{o.product.productname}} ({{o.quantity}} pcs)</p>
+        <p class="card-text"><strong>Status:</strong> {{ o.get_status_display|default:o.status|title }}</p>
+        <p class="card-text">Ordered: {{o.order_date|date:"d.m.Y H:i"}}</p>
+        
+        <a href="/confirm-delete-order/{{o.id}}/" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+{% empty %}
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <p>No orders yet.</p>
+    </div>
+</div>
+{% endfor %}
+
+<script>
+let y = `
+    <h2 style="color: lightblue">Add new order</h2>
+    <div class="card" style="width: 28rem;">
+        <div class="card-body">
+            <form method="post" action="/add-order/">
+                {% csrf_token %}
+                
+                <label>Customer:</label><br>
+                <select name="customer" class="card-text" required>
+                    {% for c in customers %}
+                    <option value="{{c.id}}">{{c.firstname}} {{c.lastname}}</option>
+                    {% endfor %}
+                </select><br><br>
+                
+                <label>Product:</label><br>
+                <select name="product" class="card-text" required>
+                    {% for p in products %}
+                    <option value="{{p.id}}">{{p.productname}} ({{p.supplier.companyname}})</option>
+                    {% endfor %}
+                </select><br><br>
+                
+                <label>Quantity:</label><br>
+                <input type="number" name="quantity" value="1" min="1" class="card-text" required><br><br>
+                
+                <label>Status:</label><br>
+                <select name="status" class="card-text">
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                </select><br><br>
+                
+                <label>Notes:</label><br>
+                <textarea name="notes" class="card-text" rows="2"></textarea><br><br>
+                
+                <input type="submit" value="Save Order" class="btn btn-success btn-sm">
+                <input type="button" onclick="hideaddform()" value="Cancel" class="btn btn-secondary btn-sm">
+            </form>
+        </div>
+    </div>`
+
+function showaddform() {
+    document.getElementById("add-div").innerHTML = y
+}
+
+function hideaddform() {
+    document.getElementById("add-div").innerHTML = ""
+}
+</script>
+
+{% endblock %}

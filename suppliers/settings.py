@@ -1,4 +1,4 @@
-import dj_database_url # Lisätty
+# import dj_database_url # Lisätty
 import os # Lisätty
 from pathlib import Path
 
@@ -76,7 +76,7 @@ DATABASES = {
     }
 }
 
-'''
+
 # Render käytössä
 DATABASES = {
     'default': dj_database_url.config(
@@ -99,7 +99,7 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

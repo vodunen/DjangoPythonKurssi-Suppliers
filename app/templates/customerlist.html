@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<br />
+<div id="add-div"></div>
+<br />
+
+<h1 style="color: darkviolet">Customers</h1>
+
+<button id="add-btn" class="btn btn-success btn-sm" onclick="showaddform()">Add new customer</button>
+
+{% for c in customers %}
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <h4 class="card-title">{{c.firstname}} {{c.lastname}}</h4>
+        <p class="card-text">Email: {{c.email}} | Phone: {{c.phone}}</p>
+        <p class="card-text">Address: {{c.address}} | {{c.city}}, {{c.country}}</p>
+
+        <a href="/confirm-delete-customer/{{c.id}}/" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+{% endfor %}
+
+<script>
+let x = `
+    <h2 style="color: lightblue">Add new customer</h2>
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+            <form method="post" action="/add-customer/">
+                {% csrf_token %}
+                <input type="text" placeholder="First name" name="firstname" class="card-text" required><br>
+                <input type="text" placeholder="Last name" name="lastname" class="card-text" required><br>
+                <input type="email" placeholder="Email" name="email" class="card-text" required><br>
+                <input type="text" placeholder="Phone" name="phone" class="card-text"><br>
+                <input type="text" placeholder="Address" name="address" class="card-text"><br>
+                <input type="text" placeholder="City" name="city" class="card-text"><br>
+                <input type="text" placeholder="Country" name="country" value="Finland" class="card-text"><br>
+                <input type="submit" value="Save" class="btn btn-success btn-sm">
+                <input type="button" onclick="hideaddform()" value="Cancel" class="btn btn-secondary btn-sm">
+            </form>
+        </div>
+    </div>`
+
+function showaddform() {
+    document.getElementById("add-div").innerHTML = x
+}
+
+function hideaddform() {
+    document.getElementById("add-div").innerHTML = ""
+}
+</script>
+
+{% endblock %}
